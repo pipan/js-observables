@@ -105,6 +105,14 @@ export class SimpleObservableMap<T, U> extends SimpleObservable<MapChange<T, U>>
         this.fire(new MapChange([], removed));
     }
 
+    public removeList(list: MapEntry<T, U>[]): void {
+        let removeKeys: T[] = [];
+        for (let entry of list) {
+            removeKeys.push(entry.getKey());
+        }
+        this.removeAll(removeKeys);
+    }
+
     public get(key: T): U {
         if (!this.containes(key)) {
             return null;

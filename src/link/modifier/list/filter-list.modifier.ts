@@ -8,8 +8,6 @@ export class FilterListModifier<T> implements Modifier<ListChange<T>, ListChange
 
     public modify(change: ListChange<T>): ListChange<T> {
         let toRemove: T[] = [];
-        let toInsert: T[] = [];
-
         for (let remove of change.removed()) {
             if (!this.fn(remove)) {
                 continue;
@@ -17,11 +15,12 @@ export class FilterListModifier<T> implements Modifier<ListChange<T>, ListChange
             toRemove.push(remove);
         }
 
+        let toInsert: T[] = [];
         for (let insert of change.inserted()) {
             if (!this.fn(insert)) {
                 continue;
             }
-            toRemove.push(insert);
+            toInsert.push(insert);
         }
 
         return new ListChange(toInsert, toRemove);

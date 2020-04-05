@@ -9,7 +9,7 @@ export class ListToListLink implements Closable {
     public constructor(
         source: ObservableList<any>,
         private target: ObservableList<any>,
-        private modifiers: Modifier<ListChange<any>, ListChange<any>>[]
+        private modifiers: Modifier<ListChange<any>, ListChange<any>>[] = []
     ) {
         this.closable = source.addListenerAndCall(this.update.bind(this));
     }

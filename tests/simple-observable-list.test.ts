@@ -87,6 +87,15 @@ test("add existing item does not add item", () => {
     expect(list.get(0)).toBe("test");
 });
 
+test("add existing instance does not add item", () => {
+    let object: any = {name: "test"};
+    let list: ObservableList<any> = new SimpleObservableList([object]);
+    list.add(object);
+
+    expect(list.count()).toBe(1);
+    expect(list.get(0).name).toBe("test");
+});
+
 test("add existing item does not fire change event", () => {
     let list: ObservableList<string> = new SimpleObservableList(["test"]);
 

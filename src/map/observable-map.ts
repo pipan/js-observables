@@ -10,6 +10,7 @@ export interface ObservableMap<T, U> extends Observable<MapChange<T, U>> {
     setList(list: MapEntry<T, U>[]): void;
     remove(key: T): void;
     removeAll(keys: T[]): void;
+    removeList(list: MapEntry<T, U>[]): void;
     get(key: T): U;
     containes(key: T): boolean;
     getValues(): IterableIterator<U>;

@@ -20,3 +20,7 @@ export {Modifier} from './link/modifier';
 
 export {AdapterListModifier} from './link/modifier/list/adapter-list.modifier';
 export {FilterListModifier} from './link/modifier/list/filter-list.modifier';
+
+export {ListToMapLink} from './link/list-to-map.link';
+export {MapToMapLink} from './link/map-to-map.link';
+export {ListToMapModifier} from './link/modifier/map/list-to-map.modifier';

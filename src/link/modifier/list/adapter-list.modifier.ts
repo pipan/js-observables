@@ -8,16 +8,15 @@ export class AdapterListModifier<T, U> implements Modifier<ListChange<T>, ListCh
 
     public modify(change: ListChange<T>): ListChange<U> {
         let toRemove: U[] = [];
-        let toInsert: U[] = [];
-
         for (let remove of change.removed()) {
             toRemove.push(
                 this.fn(remove)
             );
         }
 
+        let toInsert: U[] = [];
         for (let insert of change.inserted()) {
-            toRemove.push(
+            toInsert.push(
                 this.fn(insert)
             );
         }
