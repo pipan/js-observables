@@ -14,12 +14,16 @@ export {MapEntry} from './map/map-entry';
 export {ObservableMap} from './map/observable-map';
 export {SimpleObservableMap} from './map/simple-observable-map';
 
+export {ObservableGroup} from './group/observable-group';
+export {SimpleObservableGroup} from './group/simple-observable-group';
+
 export {ListToListLink} from './link/list-to-list.link';
 export {ListToListBuilder} from './link/list-to-list.builder';
 export {Modifier} from './link/modifier';
 
 export {AdapterListModifier} from './link/modifier/list/adapter-list.modifier';
 export {FilterListModifier} from './link/modifier/list/filter-list.modifier';
+export {SimpleModifier} from './link/modifier/simple.modifier';
 
 export {ListToMapLink} from './link/list-to-map.link';
 export {MapToMapLink} from './link/map-to-map.link';
