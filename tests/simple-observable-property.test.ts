@@ -71,22 +71,28 @@ test("isEmpty is false when value is zero", () => {
 test("addListenerAndCall fires event on register with previous null and initial value as next", () => {
     let property: ObservableProperty<string> = new SimpleObservableProperty("hallo");
 
+    let called: boolean = false;
     property.addListenerAndCall((change: PropertyChange<string>) => {
         expect(change.next()).toBe("hallo");
         expect(change.previous()).toBeNull();
+        called = true;
     });
+
+    expect(called).toBeTruthy();
 });
 
-test("addListener fires after change", (done) => {
+test("addListener fires after change", () => {
     let property: ObservableProperty<string> = new SimpleObservableProperty("hallo");
 
+    let called: boolean = false;
     property.addListener((change: PropertyChange<string>) => {
         expect(change.previous()).toBe("hallo");
         expect(change.next()).toBe("from test side");
-        done();
+        called = true;
     });
 
     property.set("from test side");
+    expect(called).toBeTruthy();
 });
 
 test("addListener does not fire when setting same value", () => {

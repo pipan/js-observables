@@ -70,6 +70,7 @@ export class SimpleObservableList<T> extends SimpleObservable<ListChange<T>> imp
                 continue;
             }
             this.listValue.splice(index, 1);
+            removed.push(item);
         }
         
         if (removed.length === 0) {

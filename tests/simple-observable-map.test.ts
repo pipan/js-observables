@@ -49,14 +49,17 @@ test("add not existing key set new value", () => {
 test("add not existing key fires event", () => {
     let map: ObservableMap<string, string> = new SimpleObservableMap();
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
         expect(change.inserted()[0].getValue()).toBe("value");
+        called = true;
     });
 
     map.add("test", "value");
+    expect(called).toBeTruthy();
 });
 
 test("add existing key new value set new value", () => {
@@ -75,7 +78,9 @@ test("add existing key new value fires event", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -83,6 +88,7 @@ test("add existing key new value fires event", () => {
     });
 
     map.add("test", "value");
+    expect(called).toBeTruthy();
 });
 
 test("add existing key and value nothing changes", () => {
@@ -129,7 +135,9 @@ test("addAll to empty map set new values", () => {
 test("addAll to empty map fires event", () => {
     let map: ObservableMap<string, string> = new SimpleObservableMap();
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(2);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -142,6 +150,7 @@ test("addAll to empty map fires event", () => {
     addMap.set("test", "testValue");
     addMap.set("duo", "abcd");
     map.addAll(addMap);
+    expect(called).toBeTruthy();
 });
 
 test("addAll existing key new value set new value", () => {
@@ -162,7 +171,9 @@ test("addAll existing key new value fires event", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -172,6 +183,7 @@ test("addAll existing key new value fires event", () => {
     let addMap: Map<string, string> = new Map();
     addMap.set("test", "testValue");
     map.addAll(addMap);
+    expect(called).toBeTruthy();
 });
 
 test("addAll existing key and value nothing changes", () => {
@@ -222,7 +234,9 @@ test("addList to empty map set new values", () => {
 test("addList to empty map fires event", () => {
     let map: ObservableMap<string, string> = new SimpleObservableMap();
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(2);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -235,6 +249,7 @@ test("addList to empty map fires event", () => {
     addList.push(new MapEntry("test", "testValue"));
     addList.push(new MapEntry("duo", "abcd"));
     map.addList(addList);
+    expect(called).toBeTruthy();
 });
 
 test("addList existing key new value set new value", () => {
@@ -255,7 +270,9 @@ test("addList existing key new value fires event", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -265,6 +282,7 @@ test("addList existing key new value fires event", () => {
     let addList: MapEntry<string, string>[] = [];
     addList.push(new MapEntry("test", "testValue"));
     map.addList(addList);
+    expect(called).toBeTruthy();
 });
 
 test("addList existing key and value nothing changes", () => {
@@ -315,7 +333,9 @@ test("setAll to empty map set new values", () => {
 test("setAll to empty map fires event", () => {
     let map: ObservableMap<string, string> = new SimpleObservableMap();
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(2);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -328,6 +348,7 @@ test("setAll to empty map fires event", () => {
     addMap.set("test", "testValue");
     addMap.set("duo", "abcd");
     map.setAll(addMap);
+    expect(called).toBeTruthy();
 });
 
 test("setAll existing key new value set new value", () => {
@@ -348,7 +369,9 @@ test("setAll existing key new value fires event", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -358,6 +381,7 @@ test("setAll existing key new value fires event", () => {
     let addMap: Map<string, string> = new Map();
     addMap.set("test", "testValue");
     map.setAll(addMap);
+    expect(called).toBeTruthy();
 });
 
 test("setAll existing key and value nothing changes", () => {
@@ -408,7 +432,9 @@ test("setAll no common key fires event with removed and inserted", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("other");
@@ -420,6 +446,7 @@ test("setAll no common key fires event with removed and inserted", () => {
     let addMap: Map<string, string> = new Map();
     addMap.set("other", "testValue");
     map.setAll(addMap);
+    expect(called).toBeTruthy();
 });
 
 // setList
@@ -440,7 +467,9 @@ test("setList to empty map set new values", () => {
 test("setList to empty map fires event", () => {
     let map: ObservableMap<string, string> = new SimpleObservableMap();
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(2);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -453,6 +482,7 @@ test("setList to empty map fires event", () => {
     list.push(new MapEntry("test", "testValue"));
     list.push(new MapEntry("duo", "abcd"));
     map.setList(list);
+    expect(called).toBeTruthy();
 });
 
 test("setList existing key new value set new value", () => {
@@ -473,7 +503,9 @@ test("setList existing key new value fires event", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(0);
         expect(change.inserted()[0].getKey()).toBe("test");
@@ -483,6 +515,7 @@ test("setList existing key new value fires event", () => {
     let list: MapEntry<string, string>[] = [];
     list.push(new MapEntry("test", "testValue"));
     map.setList(list);
+    expect(called).toBeTruthy();
 });
 
 test("setList existing key and value nothing changes", () => {
@@ -533,7 +566,9 @@ test("setList no common key fires event with removed and inserted", () => {
     initMap.set("test", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(1);
         expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("other");
@@ -545,6 +580,7 @@ test("setList no common key fires event with removed and inserted", () => {
     let list: MapEntry<string, string>[] = [];
     list.push(new MapEntry("other", "testValue"));
     map.setList(list);
+    expect(called).toBeTruthy();
 });
 
 // remove
@@ -564,7 +600,9 @@ test("remove key exists fires event with removed", () => {
     initMap.set("test", "value");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(0);
         expect(change.removed().length).toBe(1);
         expect(change.removed()[0].getKey()).toBe("test");
@@ -572,6 +610,7 @@ test("remove key exists fires event with removed", () => {
     })
 
     map.remove("test");
+    expect(called).toBeTruthy();
 });
 
 test("remove key non existing does nothing", () => {
@@ -618,7 +657,9 @@ test("remove key exists fires event with removed", () => {
     initMap.set("two", "a");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.inserted().length).toBe(0);
         expect(change.removed().length).toBe(2);
         expect(change.removed()[0].getKey()).toBe("test");
@@ -628,6 +669,7 @@ test("remove key exists fires event with removed", () => {
     })
 
     map.removeAll(["test", "two"]);
+    expect(called).toBeTruthy();
 });
 
 test("removeAll key non existing does nothing", () => {
@@ -748,12 +790,15 @@ test("clear containig items fires change with three removed", () => {
     initMap.set("test", "value");
     let map: ObservableMap<string, string> = new SimpleObservableMap(initMap);
 
+    let called: boolean = false;
     map.addListener((change: MapChange<string, string>) => {
+        called = true;
         expect(change.removed().length).toBe(1);
         expect(change.inserted().length).toBe(0);
     });
 
     map.clear();
+    expect(called).toBeTruthy();
 });
 
 test("clear not containig items keep empty array", () => {

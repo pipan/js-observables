@@ -13,3 +13,10 @@ export {MapChange} from './map/map-change';
 export {MapEntry} from './map/map-entry';
 export {ObservableMap} from './map/observable-map';
 export {SimpleObservableMap} from './map/simple-observable-map';
+
+export {ListToListLink} from './link/list-to-list.link';
+export {ListToListBuilder} from './link/list-to-list.builder';
+export {Modifier} from './link/modifier';
+
+export {AdapterListModifier} from './link/modifier/list/adapter-list.modifier';
+export {FilterListModifier} from './link/modifier/list/filter-list.modifier';
