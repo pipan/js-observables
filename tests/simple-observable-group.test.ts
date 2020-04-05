@@ -117,3 +117,72 @@ test("setAll one existing key one new key fires event one remove one insert", ()
 
     expect(called).toBeTruthy();
 });
+
+test("setAll same value and keys", () => {
+    group.setAll([new MapEntry('1', "test"), new MapEntry('1', "sub-test"), new MapEntry("2", "two")]);
+
+    expect(group.get("1").count()).toBe(2);
+    expect(group.get("2").count()).toBe(1);
+});
+
+test("setAll same value and keys does not fire event", () => {
+    let called: boolean = false;
+    group.addListener((change: MapChange<string, ObservableList<string>>) => {
+        called = true;
+    });
+
+    group.setAll([new MapEntry('1', "test"), new MapEntry('1', "sub-test"), new MapEntry("2", "two")]);
+
+    expect(called).toBeFalsy();
+});
+
+// remove
+
+test("remove from key with multiple values", () => {
+    group.remove("1", "test");
+
+    expect(group.get("1").count()).toBe(1);
+    expect(group.get("1").get(0)).toBe("sub-test");
+});
+
+test("remove from key with multiple values does not fire event", () => {
+    let called: boolean = false;
+    group.addListener((change: MapChange<string, ObservableList<string>>) => {
+        called = true;
+    });
+    group.remove("1", "test");
+
+    expect(called).toBeFalsy();
+});
+
+test("remove last in key", () => {
+    group.remove("2", "two");
+
+    expect(group.get("2")).toBeNull();
+});
+
+test("remove last in key fires event", () => {
+    let called: boolean = false;
+    group.addListener((change: MapChange<string, ObservableList<string>>) => {
+        called = true;
+        expect(change.inserted().length).toBe(0);
+        expect(change.removed().length).toBe(1);
+        expect(change.removed()[0].getKey()).toBe("2");
+    });
+    group.remove("2", "two");
+
+    expect(called).toBeTruthy();
+});
+
+test("remove not existing key", () => {
+    group.remove("4", "aaa");
+
+    expect(group.count()).toBe(2);
+});
+
+test("remove existing key not existing value", () => {
+    group.remove("2", "aaa");
+
+    expect(group.count()).toBe(2);
+});
+

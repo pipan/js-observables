@@ -11,5 +11,6 @@ export interface ObservableList<T> extends Observable<ListChange<T>> {
     all(): T[];
     count(): number;
     isEmpty(): boolean;
+    contains(iten: T): boolean;
     clear(): void;
 }

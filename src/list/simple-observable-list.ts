@@ -98,6 +98,10 @@ export class SimpleObservableList<T> extends SimpleObservable<ListChange<T>> imp
         return this.count() === 0;
     }
 
+    public contains(item: T): boolean {
+        return this.listValue.indexOf(item) > -1;
+    }
+
     public clear(): void {
         if (this.isEmpty()) {
             return;

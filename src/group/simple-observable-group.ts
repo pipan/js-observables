@@ -98,13 +98,47 @@ export class SimpleObservableGroup<T, U> extends SimpleObservable<MapChange<T, O
         this.removeAll([new MapEntry(key, item)]);
     }
 
-    public removeAll(items: MapEntry<T, U>[]): void {}
+    public removeAll(items: MapEntry<T, U>[]): void {
+        let removed: MapEntry<T, ObservableList<U>>[] = [];
 
-    public removeKey(key: T): void {}
+        for (let item of items) {
+            let list: ObservableList<U> = this.get(item.getKey());
+            if (list == null) {
+                continue;
+            }
+            list.remove(item.getValue());
+            if (list.count() === 0) {
+                this.mapValue.delete(item.getKey());
+                removed.push(
+                    new MapEntry(item.getKey(), list)
+                );
+            }
+        }
+
+        if (removed.length === 0) {
+            return;
+        }
+        this.fire(new MapChange([], removed));
+    }
+
+    public removeKey(key: T): void {
+        if (!this.containesKey(key)) {
+            return;
+        }
+        let list: ObservableList<U> = this.get(key);
+        list.clear();
+        this.mapValue.delete(key);
+        
+        let removed: MapEntry<T, ObservableList<U>>[] = [];
+        removed.push(new MapEntry(key, list));
+        this.fire(new MapChange([], removed));
+    }
 
     public containes(key: T, value: U): boolean {
-        return true;
-        // return this.mapValue.has(key);
+        if (!this.containesKey(key)) {
+            return false;
+        }
+        return this.get(key).contains(value);
     }
 
     public containesKey(key: T): boolean {
@@ -124,23 +158,28 @@ export class SimpleObservableGroup<T, U> extends SimpleObservable<MapChange<T, O
     }
 
     public countKey(key: T): number {
-        return 0;
+        if (!this.containesKey(key)) {
+            return 0;
+        }
+        return this.get(key).count();
     }
 
     public isEmpty(): boolean {
-        return true;
-    }
-
-    public isEmptyKey(key: T): boolean {
-        return true;
+        return this.count() === 0;
     }
 
     public clear(): void {
+        let removed: MapEntry<T, ObservableList<U>>[] = [];
+        this.mapValue.forEach((value: ObservableList<U>, key: T) => {
+            value.clear();
+            removed.push(new MapEntry(key, value));
+        });
 
-    }
-
-    public clearKey(key: T): void {
-
+        this.mapValue.clear();
+        if (removed.length === 0) {
+            return;
+        }
+        this.fire(new MapChange([], removed));
     }
 
     public getEntries(): IterableIterator<[T, ObservableList<U>]> {

@@ -18,9 +18,7 @@ export interface ObservableGroup<T, U> extends Observable<MapChange<T, Observabl
     count(): number;
     countKey(key: T): number;
     isEmpty(): boolean;
-    isEmptyKey(key: T): boolean;
     clear(): void;
-    clearKey(key: T): void;
     getEntries(): IterableIterator<[T, ObservableList<U>]>;
     forEach(callback: any): void;
 }
