@@ -19,12 +19,15 @@ export {SimpleObservableGroup} from './group/simple-observable-group';
 
 export {ListToListLink} from './link/list-to-list.link';
 export {ListToListBuilder} from './link/list-to-list.builder';
-export {Modifier} from './link/modifier';
-
-export {AdapterListModifier} from './link/modifier/list/adapter-list.modifier';
-export {FilterListModifier} from './link/modifier/list/filter-list.modifier';
-export {SimpleModifier} from './link/modifier/simple.modifier';
 
 export {ListToMapLink} from './link/list-to-map.link';
 export {MapToMapLink} from './link/map-to-map.link';
 export {ListToMapModifier} from './link/modifier/map/list-to-map.modifier';
+
+export {ListToGroupLink} from './link/list-to-group.link';
+export {MapToGroupLink} from './link/map-to-group.link';
+
+export {Modifier} from './link/modifier';
+export {AdapterListModifier} from './link/modifier/list/adapter-list.modifier';
+export {FilterListModifier} from './link/modifier/list/filter-list.modifier';
+export {SimpleModifier} from './link/modifier/simple.modifier';
