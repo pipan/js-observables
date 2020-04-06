@@ -186,3 +186,76 @@ test("remove existing key not existing value", () => {
     expect(group.count()).toBe(2);
 });
 
+// removeAll
+
+test("removeAll multiple keys", () => {
+    let called: boolean = false;
+    group.addListener((change: MapChange<string, ObservableList<string>>) => {
+        called = true;
+        expect(change.inserted().length).toBe(0);
+        expect(change.removed().length).toBe(1);
+    });
+    group.removeAll([new MapEntry("1", "test"), new MapEntry("2", "two")]);
+
+    expect(group.count()).toBe(1);
+    expect(group.get("1").get(0)).toBe("sub-test");
+    expect(called).toBeTruthy();
+});
+
+// removeKey
+
+test("removeKey clears list", () => {
+    let list: ObservableList<string> = group.get("1");
+    group.removeKey("1");
+
+    expect(list.count()).toBe(0);
+});
+
+test("removeKey removes key", () => {
+    group.removeKey("1");
+
+    expect(group.count()).toBe(1);
+    expect(group.get("1")).toBeNull();
+});
+
+test("removeKey fires remove event", () => {
+    let called: boolean = false;
+    group.addListener((change: MapChange<string, ObservableList<string>>) => {
+        called = true;
+        expect(change.inserted().length).toBe(0);
+        expect(change.removed().length).toBe(1);
+        expect(change.removed()[0].getKey()).toBe("1");
+    })
+    group.removeKey("1");
+
+    expect(called).toBeTruthy();
+});
+
+// clear
+
+test("clear removes all keys", () => {
+    group.clear();
+
+    expect(group.count()).toBe(0);
+});
+
+test("clear fires event with all removed", () => {
+    let called: boolean = false;
+    group.addListener((change: MapChange<string, ObservableList<string>>) => {
+        called = true;
+        expect(change.inserted().length).toBe(0);
+        expect(change.removed().length).toBe(2);
+    })
+    group.clear();
+
+    expect(called).toBeTruthy();
+});
+
+test("clear clears all lists", () => {
+    let list1: ObservableList<string> = group.get("1");
+    let list2: ObservableList<string> = group.get("2");
+    group.clear();
+
+    expect(list1.count()).toBe(0);
+    expect(list2.count()).toBe(0);
+});
