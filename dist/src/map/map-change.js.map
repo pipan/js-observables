@@ -1,0 +1,1 @@
+{"version":3,"file":"map-change.js","sourceRoot":"","sources":["../../../src/map/map-change.ts"],"names":[],"mappings":";;AAEA;IACI,mBACY,aAA+B,EAC/B,YAA8B;QAD9B,kBAAa,GAAb,aAAa,CAAkB;QAC/B,iBAAY,GAAZ,YAAY,CAAkB;IACvC,CAAC;IAEG,4BAAQ,GAAf;QACI,OAAO,IAAI,CAAC,aAAa,CAAC;IAC9B,CAAC;IAEM,2BAAO,GAAd;QACI,OAAO,IAAI,CAAC,YAAY,CAAC;IAC7B,CAAC;IACL,gBAAC;AAAD,CAAC,AAbD,IAaC;AAbY,8BAAS"}

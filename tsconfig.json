@@ -13,7 +13,7 @@
         "emitDecoratorMetadata": true
     },
     "include": [
-        "src/**/*", "tests/simple-observable-property.test.ts"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules"

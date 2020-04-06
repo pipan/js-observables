@@ -1,0 +1,1 @@
+{"version":3,"file":"observable-closable.js","sourceRoot":"","sources":["../../src/observable/observable-closable.ts"],"names":[],"mappings":";;AAGA;IACI,4BACY,UAA2B,EAC3B,EAAO;QADP,eAAU,GAAV,UAAU,CAAiB;QAC3B,OAAE,GAAF,EAAE,CAAK;IAChB,CAAC;IAEG,kCAAK,GAAZ;QACI,IAAI,CAAC,UAAU,CAAC,cAAc,CAAC,IAAI,CAAC,EAAE,CAAC,CAAC;IAC5C,CAAC;IACL,yBAAC;AAAD,CAAC,AATD,IASC;AATY,gDAAkB"}
