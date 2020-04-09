@@ -82,9 +82,11 @@ test("add existing key new value fires event", () => {
     map.addListener((change: MapChange<string, string>) => {
         called = true;
         expect(change.inserted().length).toBe(1);
-        expect(change.removed().length).toBe(0);
+        expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("test");
         expect(change.inserted()[0].getValue()).toBe("value");
+        expect(change.removed()[0].getKey()).toBe("test");
+        expect(change.removed()[0].getValue()).toBe("a");
     });
 
     map.add("test", "value");
@@ -115,6 +117,36 @@ test("add existing key and value does not fire event", () => {
     map.add("test", "value");
 
     expect(called).toBeFalsy();
+});
+
+test("add existing key and object value fires event", () => {
+    let initMap: Map<string, any> = new Map();
+    initMap.set("test", {name: "name"});
+    let map: ObservableMap<string, any> = new SimpleObservableMap(initMap);
+
+    let called: boolean = false;
+    map.addListener((change: MapChange<string, string>) => {
+        called = true;
+    });
+
+    map.add("test", {name: "name"});
+
+    expect(called).toBeTruthy();
+});
+
+test("add existing key and multi level object value fires event", () => {
+    let initMap: Map<string, any> = new Map();
+    initMap.set("test", {name: "name", list: []});
+    let map: ObservableMap<string, any> = new SimpleObservableMap(initMap);
+
+    let called: boolean = false;
+    map.addListener((change: MapChange<string, string>) => {
+        called = true;
+    });
+
+    map.add("test", {name: "name", list: []});
+
+    expect(called).toBeTruthy();
 });
 
 // addAll
@@ -175,9 +207,11 @@ test("addAll existing key new value fires event", () => {
     map.addListener((change: MapChange<string, string>) => {
         called = true;
         expect(change.inserted().length).toBe(1);
-        expect(change.removed().length).toBe(0);
+        expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("test");
         expect(change.inserted()[0].getValue()).toBe("testValue");
+        expect(change.removed()[0].getKey()).toBe("test");
+        expect(change.removed()[0].getValue()).toBe("a");
     });
 
     let addMap: Map<string, string> = new Map();
@@ -274,9 +308,11 @@ test("addList existing key new value fires event", () => {
     map.addListener((change: MapChange<string, string>) => {
         called = true;
         expect(change.inserted().length).toBe(1);
-        expect(change.removed().length).toBe(0);
+        expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("test");
         expect(change.inserted()[0].getValue()).toBe("testValue");
+        expect(change.removed()[0].getKey()).toBe("test");
+        expect(change.removed()[0].getValue()).toBe("a");
     });
 
     let addList: MapEntry<string, string>[] = [];
@@ -373,9 +409,11 @@ test("setAll existing key new value fires event", () => {
     map.addListener((change: MapChange<string, string>) => {
         called = true;
         expect(change.inserted().length).toBe(1);
-        expect(change.removed().length).toBe(0);
+        expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("test");
         expect(change.inserted()[0].getValue()).toBe("testValue");
+        expect(change.removed()[0].getKey()).toBe("test");
+        expect(change.removed()[0].getValue()).toBe("a");
     });
 
     let addMap: Map<string, string> = new Map();
@@ -507,9 +545,11 @@ test("setList existing key new value fires event", () => {
     map.addListener((change: MapChange<string, string>) => {
         called = true;
         expect(change.inserted().length).toBe(1);
-        expect(change.removed().length).toBe(0);
+        expect(change.removed().length).toBe(1);
         expect(change.inserted()[0].getKey()).toBe("test");
         expect(change.inserted()[0].getValue()).toBe("testValue");
+        expect(change.removed()[0].getKey()).toBe("test");
+        expect(change.removed()[0].getValue()).toBe("a");
     });
 
     let list: MapEntry<string, string>[] = [];

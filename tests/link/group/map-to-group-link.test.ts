@@ -40,6 +40,21 @@ test("add new group item", () => {
     expect(target.get("medium").count()).toBe(1);
 });
 
+test("add to existing group new item", () => {
+    source.add("004", {id: "004", group: "high"});
+
+    expect(target.count()).toBe(2);
+    expect(target.get("high").count()).toBe(3);
+});
+
+test("add to existing group simular with same key changes the item", () => {
+    source.add("001", {id: "111", group: "high"});
+
+    expect(target.count()).toBe(2);
+    expect(target.get("high").count()).toBe(2);
+    expect(target.get("high").get(1).id).toBe("111");
+});
+
 test("clear source clears target", () => {
     source.clear();
 
