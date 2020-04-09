@@ -30,18 +30,23 @@ export class SimpleObservableMap<T, U> extends SimpleObservable<MapChange<T, U>>
 
     public addAll(map: Map<T, U>): void {
         let inserted: MapEntry<T, U>[] = [];
+        let removed: MapEntry<T, U>[] = [];
         map.forEach((value: U, key: T) => {
-            if (this.mapValue.has(key) && this.mapValue.get(key) === value) {
-                return;
+            if (this.mapValue.has(key)) {
+                if (this.mapValue.get(key) === value) {
+                    return;
+                }
+
+                removed.push(new MapEntry(key, this.mapValue.get(key)));
             }
             this.mapValue.set(key, value);
             inserted.push(new MapEntry(key, value));
         });
         
-        if (inserted.length === 0) {
+        if (inserted.length === 0 && removed.length === 0) {
             return;
         }
-        this.fire(new MapChange(inserted, []));
+        this.fire(new MapChange(inserted, removed));
     }
 
     public addList(items: MapEntry<T, U>[]): void {
@@ -63,8 +68,11 @@ export class SimpleObservableMap<T, U> extends SimpleObservable<MapChange<T, U>>
 
         let inserted: MapEntry<T, U>[] = [];
         map.forEach((value: U, key: T) => {
-            if (this.mapValue.has(key) && this.mapValue.get(key) === value) {
-                return;
+            if (this.mapValue.has(key)) {
+                if (this.mapValue.get(key) === value) {
+                    return;
+                }
+                removed.push(new MapEntry(key, this.mapValue.get(key)));
             }
             inserted.push(new MapEntry(key, value));
         });
