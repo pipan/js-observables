@@ -42,17 +42,21 @@ var SimpleObservableMap = (function (_super) {
     SimpleObservableMap.prototype.addAll = function (map) {
         var _this = this;
         var inserted = [];
+        var removed = [];
         map.forEach(function (value, key) {
-            if (_this.mapValue.has(key) && _this.mapValue.get(key) === value) {
-                return;
+            if (_this.mapValue.has(key)) {
+                if (_this.mapValue.get(key) === value) {
+                    return;
+                }
+                removed.push(new map_entry_1.MapEntry(key, _this.mapValue.get(key)));
             }
             _this.mapValue.set(key, value);
             inserted.push(new map_entry_1.MapEntry(key, value));
         });
-        if (inserted.length === 0) {
+        if (inserted.length === 0 && removed.length === 0) {
             return;
         }
-        this.fire(new map_change_1.MapChange(inserted, []));
+        this.fire(new map_change_1.MapChange(inserted, removed));
     };
     SimpleObservableMap.prototype.addList = function (items) {
         var map = new Map();
@@ -73,8 +77,11 @@ var SimpleObservableMap = (function (_super) {
         });
         var inserted = [];
         map.forEach(function (value, key) {
-            if (_this.mapValue.has(key) && _this.mapValue.get(key) === value) {
-                return;
+            if (_this.mapValue.has(key)) {
+                if (_this.mapValue.get(key) === value) {
+                    return;
+                }
+                removed.push(new map_entry_1.MapEntry(key, _this.mapValue.get(key)));
             }
             inserted.push(new map_entry_1.MapEntry(key, value));
         });
