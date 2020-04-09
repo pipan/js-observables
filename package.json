@@ -1,24 +1,29 @@
 {
-    "name": "@wildebeest/observe-changes",
-    "version": "0.1.0",
-    "description": "Basic observable structures nad links between them - List, Map, Group",
-    "main": "dist/index.js",
-    "types": "./dist/index.d.ts",
-    "scripts": {
-      "build": "tsc --declaration",
-      "test": "jest",
-      "deploy": "npm run test && npm run build && git add -A && git commit -m 'build and deploy' && git push origin master",
-      "patch": "npm run deploy && npm version patch && npm publish",
-      "minor": "npm run deploy && npm version minor && npm publish",
-      "major": "npm run deploy && npm version major && npm publish"
-    },
-    "repository": {},
-    "devDependencies": {
-      "@types/jest": "^24.0",
-      "jest": "^24.7",
-      "ts-jest": "^24.0",
-      "typescript": "^3.4"
-    },
-    "keywords": ["observable", "structure", "link", "change"],
-    "license": "MIT"
-  }
+  "name": "@wildebeest/observe-changes",
+  "version": "0.1.1",
+  "description": "Basic observable structures nad links between them - List, Map, Group",
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --declaration",
+    "test": "jest",
+    "deploy": "npm run test && npm run build && git add -A && git commit -m 'build and deploy' && git push origin master",
+    "patch": "npm run deploy && npm version patch && npm publish",
+    "minor": "npm run deploy && npm version minor && npm publish",
+    "major": "npm run deploy && npm version major && npm publish"
+  },
+  "repository": {},
+  "devDependencies": {
+    "@types/jest": "^24.0",
+    "jest": "^24.7",
+    "ts-jest": "^24.0",
+    "typescript": "^3.4"
+  },
+  "keywords": [
+    "observable",
+    "structure",
+    "link",
+    "change"
+  ],
+  "license": "MIT"
+}
