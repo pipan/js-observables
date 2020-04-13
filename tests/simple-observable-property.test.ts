@@ -95,6 +95,20 @@ test("addListener fires after change", () => {
     expect(called).toBeTruthy();
 });
 
+test("addListener fires after change boolean", () => {
+    let property: ObservableProperty<boolean> = new SimpleObservableProperty(true);
+
+    let called: boolean = false;
+    property.addListener((change: PropertyChange<boolean>) => {
+        expect(change.previous()).toBeTruthy();
+        expect(change.next()).toBeFalsy();
+        called = true;
+    });
+
+    property.set(false);
+    expect(called).toBeTruthy();
+});
+
 test("addListener does not fire when setting same value", () => {
     let property: ObservableProperty<string> = new SimpleObservableProperty("test");
 
