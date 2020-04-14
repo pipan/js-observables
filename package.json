@@ -1,6 +1,6 @@
 {
   "name": "@wildebeest/observe-changes",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Basic observable structures nad links between them - List, Map, Group",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
