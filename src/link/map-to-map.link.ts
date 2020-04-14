@@ -19,8 +19,8 @@ export class MapToMapLink implements Closable {
             change = modifier.modify(change);
         }
 
-        this.target.addList(change.inserted());
         this.target.removeList(change.removed());
+        this.target.addList(change.inserted());
     }
 
     public close(): void  {

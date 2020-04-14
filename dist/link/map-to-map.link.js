@@ -12,8 +12,8 @@ var MapToMapLink = (function () {
             var modifier = _a[_i];
             change = modifier.modify(change);
         }
-        this.target.addList(change.inserted());
         this.target.removeList(change.removed());
+        this.target.addList(change.inserted());
     };
     MapToMapLink.prototype.close = function () {
         this.closable.close();
