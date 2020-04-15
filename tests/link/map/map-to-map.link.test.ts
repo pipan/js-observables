@@ -32,6 +32,14 @@ test("linkMaps insert to source inserts to target", () => {
     expect(target.get("003")).toBe("test");
 });
 
+test("linkMaps insert to source existing key changes value in target", () => {
+    source.add("002", "test");
+
+    expect(target.count()).toBe(2);
+    expect(target.get("001")).toBe("one");
+    expect(target.get("002")).toBe("test");
+});
+
 test("linkMaps clear source clears target", () => {
     source.clear();
 
