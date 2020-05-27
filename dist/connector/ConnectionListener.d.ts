@@ -1,7 +1,7 @@
 import { Listener } from "../observable/Listener";
-import { ValueObservable } from "../observable/ValueObservable";
+import { Channel } from "../channel/Channel";
 export declare class ConnectionListener<T> implements Listener<T> {
     private target;
-    constructor(target: ValueObservable<T>);
+    constructor(target: Channel<T>);
     action(value?: T): void;
 }

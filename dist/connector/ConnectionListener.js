@@ -5,7 +5,7 @@ var ConnectionListener = (function () {
         this.target = target;
     }
     ConnectionListener.prototype.action = function (value) {
-        this.target.set(value);
+        this.target.dispatch(value);
     };
     return ConnectionListener;
 }());
