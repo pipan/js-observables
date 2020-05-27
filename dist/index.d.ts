@@ -7,5 +7,5 @@ export { ProxyChannel } from './channel/ProxyChannel';
 export { StatefulObservable } from './observable/StatefulObservable';
 export { EagerObservable } from './observable/EagerObservable';
 export { LazyObservable } from './observable/LazyObservable';
-export { Connectable } from './connector/Connectable';
+export { Connector } from './connector/Connector';
 export { OneWayConnector } from './connector/OneWayConnector';
