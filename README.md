@@ -1,12 +1,12 @@
 # Observe Changes
 
-Observable structures for javascript
+Generic oobservable for javascript
 
 [![Build Status](https://travis-ci.com/pipan/js-observe-change.svg?branch=master)](https://travis-ci.com/pipan/js-observe-change)
 
 ## Installaction
 
-`npm i @wildebeest/observe-changes`
+`npm i @wildebeest/observable`
 
 ## API
 
