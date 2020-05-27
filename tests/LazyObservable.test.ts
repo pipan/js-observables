@@ -20,7 +20,7 @@ test('set different value fires listener', () => {
     lazy.addListenerFn((value: string) => {
         result = value
     })
-    lazy.set('value')
+    lazy.dispatch('value')
 
     expect(result).toBe('value');
 });
@@ -33,7 +33,7 @@ test('closing listener does not fire listner on change', () => {
         result = value
     })
     closable.close()
-    lazy.set('value')
+    lazy.dispatch('value')
 
     expect(result).toBe('');
 });
@@ -45,7 +45,7 @@ test('setting same value does not fire listener', () => {
     lazy.addListenerFn((value: string) => {
         result = value
     })
-    lazy.set('value')
+    lazy.dispatch('value')
 
     expect(result).toBe('');
 });

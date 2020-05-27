@@ -31,7 +31,7 @@ test('set different value fires listener', () => {
     eager.addListenerFn((value: string) => {
         result = value
     })
-    eager.set('value')
+    eager.dispatch('value')
 
     expect(result).toBe('value');
 });
@@ -44,7 +44,7 @@ test('closing listener does not fire listner on change', () => {
         count++
     })
     closable.close()
-    eager.set('value')
+    eager.dispatch('value')
 
     expect(count).toBe(1);
 });
@@ -56,7 +56,7 @@ test('setting same value does not fire listener', () => {
     eager.addListenerFn((value: string) => {
         count++
     })
-    eager.set('value')
+    eager.dispatch('value')
 
     expect(count).toBe(1);
 });

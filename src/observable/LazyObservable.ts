@@ -1,15 +1,16 @@
-import { Closable } from "./Closable";
-import { Listener } from "./Listener";
-import { ValueObservable } from "./ValueObservable";
-import { Channel } from "./Channel";
-import { ListenerFn } from "./ListenerFn";
+import { Closable } from "./Closable"
+import { Listener } from "./Listener"
+import { Channel } from "../channel/Channel"
+import { ListenerFn } from "./ListenerFn"
+import { StatefulObservable } from './StatefulObservable'
+import { ProxyChannel } from "../channel/ProxyChannel"
 
-export class LazyObservable<T> implements ValueObservable<T> {
+export class LazyObservable<T> implements StatefulObservable<T> {
     protected channel: Channel<T>
     protected value: T
 
     public constructor (value?: T) {
-        this.channel = new Channel()
+        this.channel = new ProxyChannel()
         this.value = value
     }
 
@@ -25,7 +26,7 @@ export class LazyObservable<T> implements ValueObservable<T> {
         this.channel.removeListener(listener)
     }
 
-    public set (value?: T): void {
+    public dispatch (value?: T): void {
         if (value === this.value) {
             return
         }

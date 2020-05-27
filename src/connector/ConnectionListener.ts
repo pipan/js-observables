@@ -1,14 +1,14 @@
 import { Listener } from "../observable/Listener"
-import { ValueObservable } from "../observable/ValueObservable"
+import { Channel } from "../channel/Channel"
 
 export class ConnectionListener<T> implements Listener<T> {
-    private target: ValueObservable<T>
+    private target: Channel<T>
 
-    public constructor (target: ValueObservable<T>) {
+    public constructor (target: Channel<T>) {
         this.target = target
     }
 
     public action (value?: T): void {
-        this.target.set(value)
+        this.target.dispatch(value)
     }
 }

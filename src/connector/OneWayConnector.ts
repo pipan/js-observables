@@ -3,18 +3,18 @@ import { Closable } from "../observable/Closable"
 import { ConnectionCloser } from "./ConnectionCloser"
 import { Observable } from "../observable/Observable"
 import { ConnectionListener } from "./ConnectionListener"
-import { ValueObservable } from "../observable/ValueObservable"
+import { Channel } from "../channel/Channel"
 
 export class OneWayConnector<T> implements Connectable<T> {
     private source: Observable<T>
-    private connections: Map<ValueObservable<T>, Closable>
+    private connections: Map<Channel<T>, Closable>
 
     public constructor (source: Observable<T>) {
         this.source = source
         this.connections = new Map()
     }
 
-    public connect (target: ValueObservable<T>): Closable {
+    public connect (target: Channel<T>): Closable {
         if (this.connections.has(target)) {
             return
         }
@@ -24,7 +24,7 @@ export class OneWayConnector<T> implements Connectable<T> {
         return new ConnectionCloser(this, target)
     }
 
-    public disconnect (target: ValueObservable<T>): void {
+    public disconnect (target: Channel<T>): void {
         if (!this.connections.has(target)) {
             return
         }
