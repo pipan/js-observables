@@ -1,7 +1,7 @@
 {
-  "name": "@wildebeest/observe-changes",
-  "version": "0.1.2",
-  "description": "Basic observable structures nad links between them - List, Map, Group",
+  "name": "@wildebeest/observable",
+  "version": "0.1.0",
+  "description": "Generic observable object",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -21,9 +21,7 @@
   },
   "keywords": [
     "observable",
-    "structure",
-    "link",
-    "change"
+    "structure"
   ],
   "license": "MIT"
 }

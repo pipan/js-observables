@@ -1,0 +1,62 @@
+import 'ts-jest'
+import { EagerObservable, Closable } from '../src'
+
+test('empty initialization value is undefine', () => {
+    let eager: EagerObservable<string> = new EagerObservable()
+
+    expect(eager.get()).toBeUndefined();
+});
+
+test('initialization value is set', () => {
+    let eager: EagerObservable<string> = new EagerObservable('value')
+
+    expect(eager.get()).toBe('value');
+});
+
+test('adding listener fires initial value', () => {
+    let eager: EagerObservable<string> = new EagerObservable('ha')
+
+    let result: string = ''
+    eager.addListenerFn((value: string) => {
+        result = value
+    })
+
+    expect(result).toBe('ha');
+});
+
+test('set different value fires listener', () => {
+    let eager: EagerObservable<string> = new EagerObservable()
+
+    let result: string = ''
+    eager.addListenerFn((value: string) => {
+        result = value
+    })
+    eager.set('value')
+
+    expect(result).toBe('value');
+});
+
+test('closing listener does not fire listner on change', () => {
+    let eager: EagerObservable<string> = new EagerObservable()
+
+    let count: number = 0
+    const closable: Closable = eager.addListenerFn((value: string) => {
+        count++
+    })
+    closable.close()
+    eager.set('value')
+
+    expect(count).toBe(1);
+});
+
+test('setting same value does not fire listener', () => {
+    let eager: EagerObservable<string> = new EagerObservable('value')
+
+    let count: number = 0
+    eager.addListenerFn((value: string) => {
+        count++
+    })
+    eager.set('value')
+
+    expect(count).toBe(1);
+});
