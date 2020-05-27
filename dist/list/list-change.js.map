@@ -1,1 +1,0 @@
-{"version":3,"file":"list-change.js","sourceRoot":"","sources":["../../src/list/list-change.ts"],"names":[],"mappings":";;AAAA;IACI,oBACY,cAAmB,EACnB,aAAkB;QADlB,mBAAc,GAAd,cAAc,CAAK;QACnB,kBAAa,GAAb,aAAa,CAAK;IAC3B,CAAC;IAEG,4BAAO,GAAd;QACI,OAAO,IAAI,CAAC,aAAa,CAAC;IAC9B,CAAC;IAEM,6BAAQ,GAAf;QACI,OAAO,IAAI,CAAC,cAAc,CAAC;IAC/B,CAAC;IACL,iBAAC;AAAD,CAAC,AAbD,IAaC;AAbY,gCAAU"}
