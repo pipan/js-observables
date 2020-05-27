@@ -1,10 +1,10 @@
 import { Listener } from "../observable/Listener"
-import { Channel } from "../channel/Channel"
+import { Dispatcher } from "../observable/Dispatcher"
 
 export class ConnectionListener<T> implements Listener<T> {
-    private target: Channel<T>
+    private target: Dispatcher<T>
 
-    public constructor (target: Channel<T>) {
+    public constructor (target: Dispatcher<T>) {
         this.target = target
     }
 
