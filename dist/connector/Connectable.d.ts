@@ -1,6 +1,6 @@
 import { Closable } from "../observable/Closable";
-import { Channel } from "../channel/Channel";
+import { Dispatchable } from "../observable/Dispatchable";
 export interface Connectable<T> {
-    connect(channel: Channel<T>): Closable;
-    disconnect(channel: Channel<T>): void;
+    connect(channel: Dispatchable<T>): Closable;
+    disconnect(channel: Dispatchable<T>): void;
 }

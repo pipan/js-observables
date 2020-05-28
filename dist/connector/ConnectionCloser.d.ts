@@ -1,9 +1,9 @@
 import { Closable } from "../observable/Closable";
-import { Connector } from "./Connector";
-import { Dispatcher } from "../observable/Dispatcher";
+import { Connectable } from "./Connectable";
+import { Dispatchable } from "../observable/Dispatchable";
 export declare class ConnectionCloser<T> implements Closable {
     private connector;
-    private dispatcher;
-    constructor(connector: Connector<T>, dispatcher: Dispatcher<T>);
+    private Dispatchable;
+    constructor(connector: Connectable<T>, Dispatchable: Dispatchable<T>);
     close(): void;
 }

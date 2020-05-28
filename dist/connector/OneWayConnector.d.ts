@@ -1,11 +1,11 @@
-import { Connector } from "./Connector";
+import { Connectable } from "./Connectable";
 import { Closable } from "../observable/Closable";
 import { Observable } from "../observable/Observable";
-import { Dispatcher } from "../observable/Dispatcher";
-export declare class OneWayConnector<T> implements Connector<T> {
+import { Dispatchable } from "../observable/Dispatchable";
+export declare class OneWayConnector<T> implements Connectable<T> {
     private source;
     private connections;
     constructor(source: Observable<T>);
-    connect(target: Dispatcher<T>): Closable;
-    disconnect(target: Dispatcher<T>): void;
+    connect(target: Dispatchable<T>): Closable;
+    disconnect(target: Dispatchable<T>): void;
 }

@@ -1,4 +1,4 @@
 import { Observable } from "../observable/Observable";
 import { Dispatchable } from "../observable/Dispatchable";
-export interface Channel<T> extends Observable<T>, Dispatchable<T> {
+export interface ObservableAdapter<T, U> extends Observable<U>, Dispatchable<T> {
 }

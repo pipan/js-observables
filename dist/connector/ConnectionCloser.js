@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ConnectionCloser = (function () {
-    function ConnectionCloser(connector, dispatcher) {
+    function ConnectionCloser(connector, Dispatchable) {
         this.connector = connector;
-        this.dispatcher = dispatcher;
+        this.Dispatchable = Dispatchable;
     }
     ConnectionCloser.prototype.close = function () {
-        this.connector.disconnect(this.dispatcher);
+        this.connector.disconnect(this.Dispatchable);
     };
     return ConnectionCloser;
 }());
