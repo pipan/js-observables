@@ -1,10 +1,10 @@
 import { Listener } from "../observable/Listener"
-import { Dispatcher } from "../observable/Dispatcher"
+import { Dispatchable } from "../observable/Dispatchable"
 
 export class ConnectionListener<T> implements Listener<T> {
-    private target: Dispatcher<T>
+    private target: Dispatchable<T>
 
-    public constructor (target: Dispatcher<T>) {
+    public constructor (target: Dispatchable<T>) {
         this.target = target
     }
 

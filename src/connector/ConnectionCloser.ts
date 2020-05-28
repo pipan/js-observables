@@ -1,17 +1,17 @@
 import { Closable } from "../observable/Closable"
-import { Connector } from "./Connector"
-import { Dispatcher } from "../observable/Dispatcher"
+import { Connectable } from "./Connectable"
+import { Dispatchable } from "../observable/Dispatchable"
 
 export class ConnectionCloser<T> implements Closable {
-    private connector: Connector<T>
-    private dispatcher: Dispatcher<T>
+    private connector: Connectable<T>
+    private Dispatchable: Dispatchable<T>
 
-    public constructor (connector: Connector<T>, dispatcher: Dispatcher<T>) {
+    public constructor (connector: Connectable<T>, Dispatchable: Dispatchable<T>) {
         this.connector = connector
-        this.dispatcher = dispatcher
+        this.Dispatchable = Dispatchable
     }
 
     public close (): void {
-        this.connector.disconnect(this.dispatcher)
+        this.connector.disconnect(this.Dispatchable)
     }
 }
