@@ -3,6 +3,8 @@ export { Observable } from './observable/Observable'
 export { Dispatchable } from './observable/Dispatchable'
 export { Listener } from './observable/Listener'
 
+export { ObservableAdapter } from './adapter/ObservableAdapter'
+
 export { Channel } from './channel/Channel'
 export { ProxyChannel } from './channel/ProxyChannel'
 
