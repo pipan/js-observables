@@ -1,1 +1,0 @@
-{"version":3,"file":"ListenerClosable.js","sourceRoot":"","sources":["../../src/observable/ListenerClosable.ts"],"names":[],"mappings":";;AAIA;IACI,0BACY,UAAyB,EACzB,QAAqB;QADrB,eAAU,GAAV,UAAU,CAAe;QACzB,aAAQ,GAAR,QAAQ,CAAa;IAC9B,CAAC;IAEG,gCAAK,GAAZ;QACI,IAAI,CAAC,UAAU,CAAC,cAAc,CAAC,IAAI,CAAC,QAAQ,CAAC,CAAC;IAClD,CAAC;IACL,uBAAC;AAAD,CAAC,AATD,IASC;AATY,4CAAgB"}
