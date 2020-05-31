@@ -1,11 +1,11 @@
 import { Closable } from "./Closable"
-import { Listener } from "./Listener"
 import { Channel } from "../channel/Channel"
-import { ListenerFn } from "./ListenerFn"
-import { StatefulObservable } from './StatefulObservable'
+import { StatefulConnectable } from './StatefulConnectable'
 import { ProxyChannel } from "../channel/ProxyChannel"
+import { Dispatchable } from "./Dispatchable"
+import { DsipatcherFn } from "./DispatcherFn"
 
-export class LazyObservable<T> implements StatefulObservable<T> {
+export class LazyObservable<T> implements StatefulConnectable<T> {
     protected channel: Channel<T>
     protected value: T
 
@@ -14,18 +14,18 @@ export class LazyObservable<T> implements StatefulObservable<T> {
         this.value = value
     }
 
-    addListener(listener: Listener<T>): Closable {
-        return this.channel.addListener(listener)
+    public connect (dispatcher: Dispatchable<T>): Closable {
+        return this.channel.connect(dispatcher)
     }
 
-    addListenerFn(fn: (item: T) => void): Closable {
-        return this.addListener(new ListenerFn(fn))
+    public connectFn (dispatcher: (value: T) => void): Closable {
+        return this.connect(new DsipatcherFn(dispatcher))
     }
 
-    removeListener(listener: Listener<T>): void {
-        this.channel.removeListener(listener)
+    public disconnect (dispatcher: Dispatchable<T>): void {
+        this.channel.disconnect(dispatcher)
     }
-
+ 
     public dispatch (value?: T): void {
         if (value === this.value) {
             return

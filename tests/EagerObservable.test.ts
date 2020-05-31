@@ -17,7 +17,7 @@ test('adding listener fires initial value', () => {
     let eager: EagerObservable<string> = new EagerObservable('ha')
 
     let result: string = ''
-    eager.addListenerFn((value: string) => {
+    eager.connectFn((value: string) => {
         result = value
     })
 
@@ -28,7 +28,7 @@ test('set different value fires listener', () => {
     let eager: EagerObservable<string> = new EagerObservable()
 
     let result: string = ''
-    eager.addListenerFn((value: string) => {
+    eager.connectFn((value: string) => {
         result = value
     })
     eager.dispatch('value')
@@ -40,7 +40,7 @@ test('closing listener does not fire listner on change', () => {
     let eager: EagerObservable<string> = new EagerObservable()
 
     let count: number = 0
-    const closable: Closable = eager.addListenerFn((value: string) => {
+    const closable: Closable = eager.connectFn((value: string) => {
         count++
     })
     closable.close()
@@ -53,7 +53,7 @@ test('setting same value does not fire listener', () => {
     let eager: EagerObservable<string> = new EagerObservable('value')
 
     let count: number = 0
-    eager.addListenerFn((value: string) => {
+    eager.connectFn((value: string) => {
         count++
     })
     eager.dispatch('value')

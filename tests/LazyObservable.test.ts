@@ -17,7 +17,7 @@ test('set different value fires listener', () => {
     let lazy: LazyObservable<string> = new LazyObservable()
 
     let result: string = ''
-    lazy.addListenerFn((value: string) => {
+    lazy.connectFn((value: string) => {
         result = value
     })
     lazy.dispatch('value')
@@ -29,7 +29,7 @@ test('closing listener does not fire listner on change', () => {
     let lazy: LazyObservable<string> = new LazyObservable()
 
     let result: string = ''
-    const closable: Closable = lazy.addListenerFn((value: string) => {
+    const closable: Closable = lazy.connectFn((value: string) => {
         result = value
     })
     closable.close()
@@ -42,7 +42,7 @@ test('setting same value does not fire listener', () => {
     let lazy: LazyObservable<string> = new LazyObservable('value')
 
     let result: string = ''
-    lazy.addListenerFn((value: string) => {
+    lazy.connectFn((value: string) => {
         result = value
     })
     lazy.dispatch('value')

@@ -1,11 +1,11 @@
-import { Closable } from "./Closable";
-import { Listener } from "./Listener";
-import { LazyObservable } from "./LazyObservable";
+import { Closable } from "./Closable"
+import { LazyObservable } from "./LazyObservable"
+import { Dispatchable } from "./Dispatchable"
 
 export class EagerObservable<T> extends LazyObservable<T> {
-    addListener(listener: Listener<T>): Closable {
-        const closable: Closable = super.addListener(listener)
-        listener.action(this.value)
+    public connect (dispatcher: Dispatchable<T>): Closable {
+        const closable: Closable = super.connect(dispatcher)
+        dispatcher.dispatch(this.value)
         return closable
     }
 }
