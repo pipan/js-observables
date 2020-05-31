@@ -19,9 +19,9 @@ var EagerObservable = (function (_super) {
     function EagerObservable() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    EagerObservable.prototype.addListener = function (listener) {
-        var closable = _super.prototype.addListener.call(this, listener);
-        listener.action(this.value);
+    EagerObservable.prototype.connect = function (dispatcher) {
+        var closable = _super.prototype.connect.call(this, dispatcher);
+        dispatcher.dispatch(this.value);
         return closable;
     };
     return EagerObservable;

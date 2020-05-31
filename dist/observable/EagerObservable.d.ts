@@ -1,6 +1,6 @@
 import { Closable } from "./Closable";
-import { Listener } from "./Listener";
 import { LazyObservable } from "./LazyObservable";
+import { Dispatchable } from "./Dispatchable";
 export declare class EagerObservable<T> extends LazyObservable<T> {
-    addListener(listener: Listener<T>): Closable;
+    connect(dispatcher: Dispatchable<T>): Closable;
 }

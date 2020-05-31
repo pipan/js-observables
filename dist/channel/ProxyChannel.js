@@ -1,30 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ListenerClosable_1 = require("../observable/ListenerClosable");
-var ListenerFn_1 = require("../observable/ListenerFn");
+var DispatcherFn_1 = require("../observable/DispatcherFn");
+var ConnectionCloser_1 = require("../observable/ConnectionCloser");
 var ProxyChannel = (function () {
     function ProxyChannel() {
-        this.listeners = [];
+        this.connections = new Map();
     }
-    ProxyChannel.prototype.addListener = function (listener) {
-        this.listeners.push(listener);
-        return new ListenerClosable_1.ListenerClosable(this, listener);
-    };
-    ProxyChannel.prototype.addListenerFn = function (fn) {
-        return this.addListener(new ListenerFn_1.ListenerFn(fn));
-    };
-    ProxyChannel.prototype.removeListener = function (listener) {
-        var index = this.listeners.indexOf(listener);
-        if (index < 0) {
+    ProxyChannel.prototype.connect = function (dispatcher) {
+        if (this.connections.has(dispatcher)) {
             return;
         }
-        this.listeners.splice(index, 1);
+        var closable = new ConnectionCloser_1.ConnectionCloser(this, dispatcher);
+        this.connections.set(dispatcher, closable);
+        return closable;
+    };
+    ProxyChannel.prototype.connectFn = function (fn) {
+        return this.connect(new DispatcherFn_1.DsipatcherFn(fn));
+    };
+    ProxyChannel.prototype.disconnect = function (dispatcher) {
+        if (!this.connections.has(dispatcher)) {
+            return;
+        }
+        this.connections.delete(dispatcher);
     };
     ProxyChannel.prototype.dispatch = function (data) {
-        for (var _i = 0, _a = this.listeners; _i < _a.length; _i++) {
-            var listener = _a[_i];
-            listener.action(data);
-        }
+        this.connections.forEach(function (closable, dispatcher) {
+            dispatcher.dispatch(data);
+        });
     };
     return ProxyChannel;
 }());

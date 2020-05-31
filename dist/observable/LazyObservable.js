@@ -1,20 +1,20 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ListenerFn_1 = require("./ListenerFn");
 var ProxyChannel_1 = require("../channel/ProxyChannel");
+var DispatcherFn_1 = require("./DispatcherFn");
 var LazyObservable = (function () {
     function LazyObservable(value) {
         this.channel = new ProxyChannel_1.ProxyChannel();
         this.value = value;
     }
-    LazyObservable.prototype.addListener = function (listener) {
-        return this.channel.addListener(listener);
+    LazyObservable.prototype.connect = function (dispatcher) {
+        return this.channel.connect(dispatcher);
     };
-    LazyObservable.prototype.addListenerFn = function (fn) {
-        return this.addListener(new ListenerFn_1.ListenerFn(fn));
+    LazyObservable.prototype.connectFn = function (dispatcher) {
+        return this.connect(new DispatcherFn_1.DsipatcherFn(dispatcher));
     };
-    LazyObservable.prototype.removeListener = function (listener) {
-        this.channel.removeListener(listener);
+    LazyObservable.prototype.disconnect = function (dispatcher) {
+        this.channel.disconnect(dispatcher);
     };
     LazyObservable.prototype.dispatch = function (value) {
         if (value === this.value) {

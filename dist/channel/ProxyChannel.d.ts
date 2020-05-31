@@ -1,10 +1,10 @@
 import { Channel } from "./Channel";
-import { Listener } from "../observable/Listener";
 import { Closable } from "../observable/Closable";
+import { Dispatchable } from "../observable/Dispatchable";
 export declare class ProxyChannel<T> implements Channel<T> {
-    protected listeners: Array<Listener<T>>;
-    addListener(listener: Listener<T>): Closable;
-    addListenerFn(fn: (item: T) => void): Closable;
-    removeListener(listener: Listener<T>): void;
+    protected connections: Map<Dispatchable<T>, Closable>;
+    connect(dispatcher: Dispatchable<T>): Closable;
+    connectFn(fn: (item: T) => void): Closable;
+    disconnect(dispatcher: Dispatchable<T>): void;
     dispatch(data: T): void;
 }
