@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var ProxyChannel_1 = require("../channel/ProxyChannel");
-var DispatcherFn_1 = require("./DispatcherFn");
+var ProxyChannel_1 = require("./ProxyChannel");
+var DispatcherFn_1 = require("../observable/DispatcherFn");
 var LazyObservable = (function () {
     function LazyObservable(value) {
         this.channel = new ProxyChannel_1.ProxyChannel();
