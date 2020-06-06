@@ -4,14 +4,14 @@ import { LazyObservable, Closable } from '../src'
 test('empty initialization value is undefine', () => {
     let lazy: LazyObservable<string> = new LazyObservable()
 
-    expect(lazy.get()).toBeUndefined();
-});
+    expect(lazy.get()).toBeUndefined()
+})
 
 test('initialization value is set', () => {
     let lazy: LazyObservable<string> = new LazyObservable('value')
 
-    expect(lazy.get()).toBe('value');
-});
+    expect(lazy.get()).toBe('value')
+})
 
 test('set different value fires listener', () => {
     let lazy: LazyObservable<string> = new LazyObservable()
@@ -22,8 +22,8 @@ test('set different value fires listener', () => {
     })
     lazy.dispatch('value')
 
-    expect(result).toBe('value');
-});
+    expect(result).toBe('value')
+})
 
 test('closing listener does not fire listner on change', () => {
     let lazy: LazyObservable<string> = new LazyObservable()
@@ -35,8 +35,8 @@ test('closing listener does not fire listner on change', () => {
     closable.close()
     lazy.dispatch('value')
 
-    expect(result).toBe('');
-});
+    expect(result).toBe('')
+})
 
 test('setting same value does not fire listener', () => {
     let lazy: LazyObservable<string> = new LazyObservable('value')
@@ -47,5 +47,5 @@ test('setting same value does not fire listener', () => {
     })
     lazy.dispatch('value')
 
-    expect(result).toBe('');
-});
+    expect(result).toBe('')
+})

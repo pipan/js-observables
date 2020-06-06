@@ -1,11 +1,11 @@
-import { Closable } from "./Closable"
-import { Channel } from "../channel/Channel"
-import { StatefulConnectable } from './StatefulConnectable'
-import { ProxyChannel } from "../channel/ProxyChannel"
-import { Dispatchable } from "./Dispatchable"
-import { DsipatcherFn } from "./DispatcherFn"
+import { Closable } from "../observable/Closable"
+import { Channel } from "./Channel"
+import { StatefulChannel } from './StatefulChannel'
+import { ProxyChannel } from "./ProxyChannel"
+import { Dispatchable } from "../observable/Dispatchable"
+import { DsipatcherFn } from "../observable/DispatcherFn"
 
-export class LazyObservable<T> implements StatefulConnectable<T> {
+export class LazyObservable<T> implements StatefulChannel<T> {
     protected channel: Channel<T>
     protected value: T
 
