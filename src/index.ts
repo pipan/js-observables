@@ -11,6 +11,7 @@ export { LazyObservable } from './channel/LazyObservable'
 export { Adaptable } from './adapter/Adaptable'
 export { AdaptableChannel } from './adapter/AdaptableChannel'
 export { AdapterFn } from './adapter/AdapterFn'
+export { ListAdapter } from './adapter/ListAdapter'
 
 export { Pipable } from './pipe/Pipable'
 export { Pipe } from './pipe/Pipe'

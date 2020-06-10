@@ -1,8 +1,8 @@
-# Observe Changes
+# Observable
 
-Generic oobservable for javascript
+Observables that can be connected together
 
-[![Build Status](https://travis-ci.com/pipan/js-observe-change.svg?branch=master)](https://travis-ci.com/pipan/js-observe-change)
+[![Build Status](https://travis-ci.com/pipan/js-observables.svg?branch=master)](https://travis-ci.com/pipan/js-observables)
 
 ## Installaction
 
@@ -10,21 +10,25 @@ Generic oobservable for javascript
 
 ## API
 
-### Observable
+### Connectable
+
+> a.k.a. Observable
 
 This interface allows you to listen for changes or events. You are not able to get the state of the object because observable object does not have to have state
 
-To create a statefull observable use `ValueObservable` interface. This interface allows you to change the state with `set` method and receive state with `get`  method. The are 2 implementations of `ValueObserver` interface and that is `LazyObservable` and `EagerObservable`. Former will notify listeners only when new value is set, latter will notify listener right after listner is registered with current state value.
+To create a statefull observable use `StatefulChannel` interface. This interface allows you to change the state with `dispatch` method and receive state with `get`  method. The are 2 implementations of `StatefulChannel` interface and that is `LazyObservable` and `EagerObservable`. Former will notify listeners only when new value is set, latter will notify listener right after listner is connected with current state value.
 
-### Dispatcher
+You can connect two classes together (source -> target) so that, when source changes it will notify target. `surce.connect(target)`
+
+### Dispatchable
 
 This interface allows you to `dispatch` an event or value. You are not able to listen or recieve state. This interface acts as an input layer for other objects or components of your application.
 
 The only implementation of this interface is `Channel`. Chnnel allows you to dispatch events (or any other data) to listeners.
 
-### Connectable
+### Adaptable
 
-Soetimes you have two parts of a application that use Observables. And you need to connect those observable together. One part has to be a `source` of data flow in your application and the other part has to be `target` of your data flow in applicatin. So you can use `Connectable` interface, specificaly `OneWayConnector` to bridge the gap between those two parts of an application.
+### Pipable
 
 ## Examples
 

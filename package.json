@@ -1,7 +1,7 @@
 {
   "name": "@wildebeest/observable",
   "version": "0.4.2",
-  "description": "Generic observable object",
+  "description": "Observables that can be connected together",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -20,8 +20,10 @@
     "typescript": "^3.4"
   },
   "keywords": [
+    "observe",
     "observable",
-    "structure"
+    "connect",
+    "connectable"
   ],
   "license": "MIT"
 }
